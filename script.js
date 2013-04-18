@@ -11,6 +11,14 @@ document.addEventListener ("DOMContentLoaded", function() {
     var pmessagenew = document.createElement("div");
     pmessagenew.setAttribute("id", "pmessage");
     pmessagenew.setAttribute("class", "error");
+
+    var quote = document.createElement("input");
+    quote.setAttribute("type", "button");
+    quote.setAttribute("style", "float:left; margin-top:5px");
+    quote.setAttribute("value", "[Quote]");
+    quote.addEventListener ("click", function() {
+        document.getElementById ("frmtxt").value += '[quote][\/quote]';
+    }, false);
     
     var youtube = document.createElement("input");
     youtube.setAttribute("type", "button");
@@ -20,7 +28,6 @@ document.addEventListener ("DOMContentLoaded", function() {
     	var url = prompt("Inserisci url video:","");
     	var title = prompt("Inserisci titolo del video","");
         document.getElementById ("frmtxt").value += '[yt]'+url+'[\/yt][b]'+title+'[\/b]';
-
     }, false);
 
     var img = document.createElement("input");
@@ -72,6 +79,7 @@ document.addEventListener ("DOMContentLoaded", function() {
     nerdz_form.appendChild(img);
     nerdz_form.appendChild(url);
     nerdz_form.appendChild(wiki);
+    nerdz_form.appendChild(quote);
     nerdz_form.appendChild(spoiler);
     nerdz_form.appendChild(code);
     nerdz_form.appendChild(pmessagenew);
