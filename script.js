@@ -1,5 +1,6 @@
 /*
   "Nerdz Tag Improve" by JustHvost.
+  Originally by nicolapcweek94.
 */
 
 document.addEventListener ("DOMContentLoaded", function() {
@@ -17,7 +18,12 @@ document.addEventListener ("DOMContentLoaded", function() {
     quote.setAttribute("style", "float:left; margin-top:5px");
     quote.setAttribute("value", "[Quote]");
     quote.addEventListener ("click", function() {
-        document.getElementById ("frmtxt").value += '[quote][\/quote]';
+        var quotedtext = prompt("Inserisci testo citazione:","");
+        if (quotedtext){
+                document.getElementById ("frmtxt").value += '[quote]'+quotedtext+'[\/quote]';
+                } else { document.getElementById ("frmtxt").value += '[quote][\/quote]'; }
+            }
+        
     }, false);
     
     var youtube = document.createElement("input");
@@ -26,9 +32,9 @@ document.addEventListener ("DOMContentLoaded", function() {
     youtube.setAttribute("value", "Video");
     youtube.addEventListener ("click", function() {
     	var url = prompt("Inserisci url video:","");
-    	if (url!=null){
+    	if (url){
     		var title = prompt("Inserisci titolo del video","");
-    		if(title!=null){
+    		if(title){
         		document.getElementById ("frmtxt").value += '[yt]'+url+'[\/yt][b]'+title+'[\/b]';
         		} else { document.getElementById ("frmtxt").value += '[yt]'+url+'[\/yt]'; }
         	}
@@ -40,7 +46,7 @@ document.addEventListener ("DOMContentLoaded", function() {
     img.setAttribute("value", "Image");
     img.addEventListener ("click", function() {
     	var url = prompt("Inserisci url immagine:","");
-    	if (url!=null){ 
+    	if (url){ 
         	document.getElementById ("frmtxt").value += '[img]'+url+'[\/img]';
         	}
     }, false);
@@ -51,9 +57,9 @@ document.addEventListener ("DOMContentLoaded", function() {
     url.setAttribute("value", "Link");
     url.addEventListener ("click", function() {
     	var url = prompt("Inserisci url:","");
-    	if (url!=null){
+    	if (url){
     		var title = prompt("Inserisci titolo per l'URL","");
-    	if(title!=null){
+    	if(title){
         	document.getElementById ("frmtxt").value += '[url='+url+']'+title+'[\/url]';
         } else { document.getElementById ("frmtxt").value += '[url]'+url+'[\/url]'; }
         }
@@ -86,9 +92,6 @@ document.addEventListener ("DOMContentLoaded", function() {
         }
     }, false);
     
-
-    
-
 
     nerdz_form.removeChild(nerdz_form.childNodes[3]);
     nerdz_form.appendChild(youtube);
