@@ -17,7 +17,10 @@ document.addEventListener ("DOMContentLoaded", function() {
     youtube.setAttribute("style", "float:left; margin-top:5px");
     youtube.setAttribute("value", "Video");
     youtube.addEventListener ("click", function() {
-        document.getElementById ("frmtxt").value += '[yt][\/yt]';
+    	var url = prompt("Inserisci url video:","");
+    	var title = prompt("Inserisci titolo del video","");
+        document.getElementById ("frmtxt").value += '[yt]'+url+'[\/yt][b]'+title+'[\/b]';
+
     }, false);
 
     var img = document.createElement("input");
@@ -33,7 +36,9 @@ document.addEventListener ("DOMContentLoaded", function() {
     url.setAttribute("style", "float:left; margin-top:5px");
     url.setAttribute("value", "Link");
     url.addEventListener ("click", function() {
-        document.getElementById ("frmtxt").value += '[url][\/url]';
+    	var url = prompt("Inserisci url:","");
+    	var title = prompt("Inserisci titolo per l'URL","");
+        document.getElementById ("frmtxt").value += '[url='+url+']'+title+'[\/url]';
     }, false);
 
     var wiki = document.createElement("input");
@@ -57,7 +62,8 @@ document.addEventListener ("DOMContentLoaded", function() {
     code.setAttribute("style", "float:left; margin-top:5px");
     code.setAttribute("value", "Code");
     code.addEventListener ("click", function() {
-        document.getElementById ("frmtxt").value += '[code=#inserisci linguaggio][\/code]';
+    	var prog = prompt("Inserisci linguaggio:","");
+        document.getElementById ("frmtxt").value += '[code='+prog+'][\/code]';
     }, false);
 
 
