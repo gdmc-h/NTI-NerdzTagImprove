@@ -18,8 +18,12 @@ document.addEventListener ("DOMContentLoaded", function() {
     youtube.setAttribute("value", "Video");
     youtube.addEventListener ("click", function() {
     	var url = prompt("Inserisci url video:","");
-    	var title = prompt("Inserisci titolo del video","");
-        document.getElementById ("frmtxt").value += '[yt]'+url+'[\/yt][b]'+title+'[\/b]';
+    	if (url!=null){
+    		var title = prompt("Inserisci titolo del video","");
+    		if(title!=null){
+        		document.getElementById ("frmtxt").value += '[yt]'+url+'[\/yt][b]'+title+'[\/b]';
+        		} else { document.getElementById ("frmtxt").value += '[yt]'+url+'[\/yt]'; }
+        	}
 
     }, false);
 
@@ -28,7 +32,10 @@ document.addEventListener ("DOMContentLoaded", function() {
     img.setAttribute("style", "float:left; margin-top:5px");
     img.setAttribute("value", "Image");
     img.addEventListener ("click", function() {
-        document.getElementById ("frmtxt").value += '[img][\/img]';
+    	var url = prompt("Inserisci url immagine:","");
+    	if (url!=null){ 
+        	document.getElementById ("frmtxt").value += '[img]'+url+'[\/img]';
+        	}
     }, false);
 
     var url = document.createElement("input");
@@ -37,8 +44,12 @@ document.addEventListener ("DOMContentLoaded", function() {
     url.setAttribute("value", "Link");
     url.addEventListener ("click", function() {
     	var url = prompt("Inserisci url:","");
-    	var title = prompt("Inserisci titolo per l'URL","");
-        document.getElementById ("frmtxt").value += '[url='+url+']'+title+'[\/url]';
+    	if (url!=null){
+    		var title = prompt("Inserisci titolo per l'URL","");
+    	if(title!=null){
+        	document.getElementById ("frmtxt").value += '[url='+url+']'+title+'[\/url]';
+        } else { document.getElementById ("frmtxt").value += '[url]'+url+'[\/url]'; }
+        }
     }, false);
 
     var wiki = document.createElement("input");
@@ -63,8 +74,13 @@ document.addEventListener ("DOMContentLoaded", function() {
     code.setAttribute("value", "Code");
     code.addEventListener ("click", function() {
     	var prog = prompt("Inserisci linguaggio:","");
+    	if(prog!=null){
         document.getElementById ("frmtxt").value += '[code='+prog+'][\/code]';
+        }
     }, false);
+    
+
+    
 
 
     nerdz_form.removeChild(nerdz_form.childNodes[3]);
