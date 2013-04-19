@@ -101,7 +101,7 @@ document.addEventListener ("DOMContentLoaded", function() {
     //Cur Tag
     var cor = document.createElement("input");
    	cor.setAttribute("type", "button");
-    	cor.setAttribute("style", "float:right; margin-right:120px;");
+    	cor.setAttribute("style", "float:right; margin-right:120px; margin-top:5px");
     	cor.setAttribute("value", "cur");
     	cor.addEventListener ("click", function() {
         document.getElementById ("frmtxt").value += '[cur][\/cur]';
@@ -110,7 +110,7 @@ document.addEventListener ("DOMContentLoaded", function() {
     //Small Tag  
     var small = document.createElement("input");
    	small.setAttribute("type", "button");
-    	small.setAttribute("style", "float:right;");
+    	small.setAttribute("style", "float:right; margin-top:5px");
     	small.setAttribute("value", "small");
     	small.addEventListener ("click", function() {
         document.getElementById ("frmtxt").value += '[small][\/small]';
@@ -119,7 +119,7 @@ document.addEventListener ("DOMContentLoaded", function() {
     //Del tag
     var del = document.createElement("input");
    	del.setAttribute("type", "button");
-    	del.setAttribute("style", "float:right; ");
+    	del.setAttribute("style", "float:right; margin-top:5px");
     	del.setAttribute("value", "del");
     	del.addEventListener ("click", function() {
         document.getElementById ("frmtxt").value += '[del][\/del]';
@@ -128,7 +128,7 @@ document.addEventListener ("DOMContentLoaded", function() {
     //U Tag
     var u = document.createElement("input");
    	u.setAttribute("type", "button");
-    	u.setAttribute("style", "float:right; ");
+    	u.setAttribute("style", "float:right; margin-top:5px");
     	u.setAttribute("value", "u");
     	u.addEventListener ("click", function() {
         document.getElementById ("frmtxt").value += '[u][\/u]';
@@ -137,7 +137,7 @@ document.addEventListener ("DOMContentLoaded", function() {
     //Bold Tag
     var b = document.createElement("input");
    	b.setAttribute("type", "button");
-    	b.setAttribute("style", "float:right; ");
+    	b.setAttribute("style", "float:right; margin-top:5px");
     	b.setAttribute("value", "b");
     	b.addEventListener ("click", function() {
         document.getElementById ("frmtxt").value += '[b][\/b]';
