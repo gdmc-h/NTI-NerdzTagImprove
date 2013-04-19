@@ -12,6 +12,9 @@
 // - nicolapcweek94: original author, various fixes
 // - Robertof: code refactoring, API for buttons, protheme support, 
 //   greasemonkey/tampermonkey/chrom* support
+// - Dlion: add gist support
+
+
 
 (function() {
     var generalUtils = {
@@ -88,6 +91,34 @@
                         TEXTBOX.focus();
                     }
                 },
+                addToTextBoxWithPos = function (text, caretPos) {
+    		//Yep... JustHvost was here...
+                    if (document.selection)
+                    {
+                        TEXTBOX.focus();
+                        var sel = document.selection.createRange();
+                        sel.text = text;
+                        TEXTBOX.focus();
+                    }
+                    else if (TEXTBOX.selectionStart || TEXTBOX.selectionStart === 0)
+                    {
+                        var startPos  = TEXTBOX.selectionStart;
+                        var endPos    = TEXTBOX.selectionEnd;
+                        var scrollTop = TEXTBOX.scrollTop;
+                        TEXTBOX.value = TEXTBOX.value.substring (0, startPos) + text + TEXTBOX.value.substring (endPos, TEXTBOX.value.length);
+                        TEXTBOX.focus();
+                        TEXTBOX.selectionStart = startPos + text.length;
+                        TEXTBOX.selectionEnd   = startPos + text.length;
+                        TEXTBOX.scrollTop = scrollTop;
+                    }
+                    else
+                    {
+                        TEXTBOX.value += text;
+                        TEXTBOX.focus();
+                    }
+                         if (caretPos != null && caretPos > -1)
+                         setCaretPosition (TEXTBOX, TEXTBOX.selectionStart - caretPos);
+                },
                 createButton = function (value, listener, customStylingCode, _hidden, _noHideClass) {
                     // we may want to use jquery here since we have it, but
                     // we're lazy and we'll use normal DOM functions
@@ -116,7 +147,7 @@
                     btn.addEventListener ("click", listener, false);
                     NERDZ_FORM.insertBefore (btn, PMESSAGE);
                 },
-                createPromptButton = function (value, question, tagFormat, caretPos) {
+                createPromptButton = function (value, question, tagFormat, caretPos, customStyling, _hidden) {
                     createButton (value, function() {
                         var data = prompt (question, "");
                         if (data != null && data != "")
@@ -125,7 +156,7 @@
                             if (caretPos != null && caretPos > -1)
                                 setCaretPosition (TEXTBOX, TEXTBOX.selectionStart - caretPos);
                         }
-                    });
+                    }, customStyling, _hidden);
                 },
                 createAppendButton = function (value, whatToAppend, caretPos, customStyling, _hidden) {
                     createButton (value, function() {
@@ -186,24 +217,8 @@
             // note: 7 is the length of the [/wiki] tag
             createAppendButton ("Wiki",    "[wiki=it][/wiki]", 7);
             createAppendButton ("Spoiler", "[spoiler][/spoiler]", 10);
-            createPromptButton ("Codice",  "Inserisci il linguaggio:", "[code={0}][/code]", 7);
-            createButton ("Gist", function() {
-                var link = prompt ("Inserisci il link o l'id del tuo Gist:", "");
-                if (link != null && link != "")
-                {
-                    // allow to use an URl too instead of an ID. simpler and more epic
-                    if (/^http/.test (link))
-                    {
-                        // try to parse the link
-                        var tmpGistId = /\/([^\/]+)$/.exec (link);
-                        if (tmpGistId != null)
-                            link = tmpGistId[1];
-                    }
-                    addToTextBox ("[gist]{0}[/gist]".format (link));
-                }
-            });
-            createAppendButton ("Quote", "[quote][/quote]", 8);
-            // Styling buttons starting now
+           
+            // Hidden buttons -JustHvost
             createButton (">>>", function() {
                 // sorry for the bad code
                 var buttons = document.getElementsByClassName ("ntiBtn");
@@ -223,21 +238,56 @@
                     this.style.marginLeft = ( IS_WEBKIT ? "2px" : "0px" );
                 this.value = ( isRight ? "<<<" : ">>>" );
             }, null, false, true);
-            createAppendButton ("B", "[b][/b]", 4, function() {
-                this.style.fontWeight = "bold";
-            }, true);
-            createAppendButton ("I", "[cur][/cur]", 6, function() {
-                this.style.fontStyle = "italic";
-            }, true);
-            createAppendButton ("U", "[u][/u]", 4, function() {
-                this.style.textDecoration = "underline";
-            }, true);
-            createAppendButton ("Del", "[del][/del]", 6, function() {
-                this.style.textDecoration = "line-through";
-            }, true);
-            createAppendButton ("Small", "[small][/small]", 8, null, true);
+            createPromptButton ("Codice", "Inserisci il linguaggio:", "[code={0}][/code]", 7, null, true);
+            createButton ("Gist", function() {
+                var link = prompt ("Inserisci il link o l'id del tuo Gist:", "");
+                if (link != null && link != "")
+                {
+                    // allow to use an URl too instead of an ID. simpler and more epic
+                    if (/^http/.test (link))
+                    {
+                        // try to parse the link
+                        var tmpGistId = /\/([^\/]+)$/.exec (link);
+                        if (tmpGistId != null)
+                            link = tmpGistId[1];
+                    }
+                    addToTextBox ("[gist]{0}[/gist]".format (link));
+                }
+            }, null, true);
+            createAppendButton ("Quote", "[quote][/quote]", 8, null, true);
             createAppendButton ("Hr", "[hr]", -1, null, true);
             createAppendButton ("Math", "[math][/math]", 7, null, true);
+            
+            //HOTKEYS ARE HERE, BITCHES!!! -JustHvost 
+            var isAlt = false;
+		document.onkeyup=function(e) {
+    			if(e.which == 18) isAlt=false;
+		}
+		document.onkeydown=function(e){
+   			if(e.which == 18) isAlt=true;
+			if(e.which == 90 && isAlt == true) {
+         		addToTextBoxWithPos("[b][/b]", 4);
+         		return false;
+    			}
+    			if(e.which == 88 && isAlt == true) {
+         		addToTextBoxWithPos("[i][/i]", 4);
+         		return false;
+    			}
+    			if(e.which == 67 && isAlt == true) {
+         		addToTextBoxWithPos("[u][/u]", 4);
+         		return false;
+    			}
+    			if(e.which == 86 && isAlt == true) {
+         		addToTextBoxWithPos("[del][/del]", 6);
+         		return false;
+    			}
+    			if(e.which == 66 && isAlt == true) {
+         		addToTextBoxWithPos("[small][/small]", 8);
+         		return false;
+    			}
+		}
+		
+		
             // add support for NERDZ protheme
             // autodetect isn't supported since stylish css replacing is done in a weird
             // way. let the user select if he wants protheme adjustments or not
