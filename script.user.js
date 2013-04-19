@@ -215,8 +215,8 @@
                 }
             });
             // note: 7 is the length of the [/wiki] tag
-            createAppendButton ("Wiki",    "[wiki=it][/wiki]", 7);
             createAppendButton ("Spoiler", "[spoiler][/spoiler]", 10);
+            createPromptButton ("Codice", "Inserisci il linguaggio:", "[code={0}][/code]", 7);
            
             // Hidden buttons -JustHvost
             createButton (">>>", function() {
@@ -238,7 +238,6 @@
                     this.style.marginLeft = ( IS_WEBKIT ? "2px" : "0px" );
                 this.value = ( isRight ? "<<<" : ">>>" );
             }, null, false, true);
-            createPromptButton ("Codice", "Inserisci il linguaggio:", "[code={0}][/code]", 7, null, true);
             createButton ("Gist", function() {
                 var link = prompt ("Inserisci il link o l'id del tuo Gist:", "");
                 if (link != null && link != "")
@@ -254,34 +253,35 @@
                     addToTextBox ("[gist]{0}[/gist]".format (link));
                 }
             }, null, true);
+            createAppendButton ("Wiki",    "[wiki=it][/wiki]", 7, null, true);
             createAppendButton ("Quote", "[quote][/quote]", 8, null, true);
             createAppendButton ("Hr", "[hr]", -1, null, true);
             createAppendButton ("Math", "[math][/math]", 7, null, true);
             
             //HOTKEYS ARE HERE, BITCHES!!! -JustHvost 
-            var isCtrl = false;
+            var isAlt = false;
 		document.onkeyup=function(e) {
-    			if(e.which == 17) isCtrl=false;
+    			if(e.which == 18) isAlt=false;
 		}
 		document.onkeydown=function(e){
-   			if(e.which == 17) isCtrl=true;
-			if(e.which == 49 && isCtrl == true) {
+   			if(e.which == 18) isAlt=true;
+			if(e.which == 90 && isAlt == true) {
          		addToTextBoxWithPos("[b][/b]", 4);
          		return false;
     			}
-    			if(e.which == 50 && isCtrl == true) {
+    			if(e.which == 88 && isAlt == true) {
          		addToTextBoxWithPos("[i][/i]", 4);
          		return false;
     			}
-    			if(e.which == 51 && isCtrl == true) {
+    			if(e.which == 67 && isAlt == true) {
          		addToTextBoxWithPos("[u][/u]", 4);
          		return false;
     			}
-    			if(e.which == 52 && isCtrl == true) {
+    			if(e.which == 86 && isAlt == true) {
          		addToTextBoxWithPos("[del][/del]", 6);
          		return false;
     			}
-    			if(e.which == 53 && isCtrl == true) {
+    			if(e.which == 66 && isAlt == true) {
          		addToTextBoxWithPos("[small][/small]", 8);
          		return false;
     			}
