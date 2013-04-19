@@ -1,4 +1,7 @@
 NTI-NerdzTagImprove
 ===================
 
-Un semplice script basato su quello di Nicolapcweek94 con delle funzioni che IO uso di più rispetto a quelle messe dal signorino....
+Userscript creato originariamente da Nicolapcweek94 e moddato dal sottoscritto e da Robertof.
+NTI è ormai diventata la versione ufficiale andando a sostituire quella originaria.
+Ogni Update verrà uppato qui ed il changelog è possiile visualizzarlo su Nerdz (http://www.nerdz.eu/NTI-NerdzTagImprove:).
+Enjoy.
