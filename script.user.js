@@ -269,19 +269,19 @@
          		addToTextBoxWithPos("[b][/b]", 4);
          		return false;
     			}
-    			if(e.which == 88 && isCtrl == true) {
+    			if(e.which == 38 && isCtrl == true) {
          		addToTextBoxWithPos("[i][/i]", 4);
          		return false;
     			}
-    			if(e.which == 67 && isCtrl == true) {
+    			if(e.which == 39 && isCtrl == true) {
          		addToTextBoxWithPos("[u][/u]", 4);
          		return false;
     			}
-    			if(e.which == 86 && isCtrl == true) {
+    			if(e.which == 40 && isCtrl == true) {
          		addToTextBoxWithPos("[del][/del]", 6);
          		return false;
     			}
-    			if(e.which == 66 && isCtrl == true) {
+    			if(e.which == 37 && isCtrl == true) {
          		addToTextBoxWithPos("[small][/small]", 8);
          		return false;
     			}
