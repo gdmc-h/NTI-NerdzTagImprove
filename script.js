@@ -1,5 +1,6 @@
 /*
   "Nerdz Tag Improve" by JustHvost.
+                      by DLion.
 */
 
 document.addEventListener ("DOMContentLoaded", function() {
