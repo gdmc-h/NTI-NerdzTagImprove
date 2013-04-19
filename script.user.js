@@ -92,7 +92,7 @@
                     }
                 },
                 addToTextBoxWithPos = function (text, caretPos) {
-    		//Yep... JustHvost was here...
+			//Yep... JustHvost was here...
                     if (document.selection)
                     {
                         TEXTBOX.focus();
@@ -259,29 +259,29 @@
             createAppendButton ("Math", "[math][/math]", 7, null, true);
             
             //HOTKEYS ARE HERE, BITCHES!!! -JustHvost 
-            var isAlt = false;
+            var isCtrl = false;
 		document.onkeyup=function(e) {
-    			if(e.which == 18) isAlt=false;
+    			if(e.which == 17) isCtrl=false;
 		}
 		document.onkeydown=function(e){
-   			if(e.which == 18) isAlt=true;
-			if(e.which == 90 && isAlt == true) {
+   			if(e.which == 17) isCtrl=true;
+			if(e.which == 90 && isCtrl == true) {
          		addToTextBoxWithPos("[b][/b]", 4);
          		return false;
     			}
-    			if(e.which == 88 && isAlt == true) {
+    			if(e.which == 88 && isCtrl == true) {
          		addToTextBoxWithPos("[i][/i]", 4);
          		return false;
     			}
-    			if(e.which == 67 && isAlt == true) {
+    			if(e.which == 67 && isCtrl == true) {
          		addToTextBoxWithPos("[u][/u]", 4);
          		return false;
     			}
-    			if(e.which == 86 && isAlt == true) {
+    			if(e.which == 86 && isCtrl == true) {
          		addToTextBoxWithPos("[del][/del]", 6);
          		return false;
     			}
-    			if(e.which == 66 && isAlt == true) {
+    			if(e.which == 66 && isCtrl == true) {
          		addToTextBoxWithPos("[small][/small]", 8);
          		return false;
     			}
