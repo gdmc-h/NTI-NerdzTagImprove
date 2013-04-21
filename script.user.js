@@ -265,23 +265,23 @@
 		}
 		document.onkeydown=function(e){
    			if(e.which == 18) isAlt=true;
-			if(e.which == 90 && isAlt == true) {
+			if(e.which == 49 && isAlt == true) {
          		addToTextBoxWithPos("[b][/b]", 4);
          		return false;
     			}
-    			if(e.which == 88 && isAlt == true) {
+    			if(e.which == 50 && isAlt == true) {
          		addToTextBoxWithPos("[i][/i]", 4);
          		return false;
     			}
-    			if(e.which == 67 && isAlt == true) {
+    			if(e.which == 51 && isAlt == true) {
          		addToTextBoxWithPos("[u][/u]", 4);
          		return false;
     			}
-    			if(e.which == 86 && isAlt == true) {
+    			if(e.which == 52 && isAlt == true) {
          		addToTextBoxWithPos("[del][/del]", 6);
          		return false;
     			}
-    			if(e.which == 66 && isAlt == true) {
+    			if(e.which == 53 && isAlt == true) {
          		addToTextBoxWithPos("[small][/small]", 8);
          		return false;
     			}
